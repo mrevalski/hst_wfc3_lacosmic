@@ -3,7 +3,7 @@
 # https://docs.scipy.org/doc/numpy-1.14.0/reference/routines.random.html
 # https://learning.oreilly.com/library/view/python-for-data/9781449323592/ch04.html
 
-def run_lacosmic_parallel(file, modify_flux, my_sigclip, fix_neg_pix, neg_pix_sig, save_cr_msk, show_result):
+def run_lacosmic_parallel(file, modify_flux, my_sigclip, fix_neg_pix, neg_pix_sig, random_seed, save_cr_msk, show_result):
 
     '''
     Parameters
@@ -41,6 +41,12 @@ def run_lacosmic_parallel(file, modify_flux, my_sigclip, fix_neg_pix, neg_pix_si
             Setting this lower will replace real noise in the data that would not be flagged by
             lacosmic, while higher values will not replace the negative pixels that lacomic flags
             as cosmic rays and then mistakenly replaces with a larger group of negative pixels.
+
+    random_seed : bool
+            The user may choose to "seed" the random number generator so the negative pixel
+            replacement values drawn by numpy.random.random_sample() are exactly repeatable.
+            This is required to generate cleaned files that are absolutely identical between
+            different runs of the lacosmic cleaning function, so the recommended value is True.
 
     save_cr_msk : bool
             The user may choose to save the cosmic ray masks that are determined by lacosmic.
@@ -116,6 +122,10 @@ def run_lacosmic_parallel(file, modify_flux, my_sigclip, fix_neg_pix, neg_pix_si
         print('Using a sigma-clipped thresh of '+str('{:.1f}'.format(neg_pix_bkg)+' counts.'))
         print('Replacing values < '+str(neg_pix_sig)+'*'+str('{:.1f}'.format(neg_pix_bkg))+' = '+\
               str('{:.1f}'.format(neg_pix_bkg*neg_pix_sig))+' in data.')
+
+        if (random_seed == True):
+
+            numpy.random.seed(16246)
 
 
 
