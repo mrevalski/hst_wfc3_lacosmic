@@ -7,3 +7,5 @@ This notebook was created by Dr. Mitchell Revalski to clean cosmic rays from Hub
 This Jupyter Notebook includes two refinements for users to fine-tune the L.A.Cosmic settings for their data. First, the user can choose to replace negative outlier pixels with local random noise so they are not incorrectly flagged by lacosmic. Second, the user can choose to have the flux values interpolated and replaced (the default behavior of L.A.Cosmic), or to only flag these pixels in the WFC3/UVIS Data Quality (DQ) arrays. This can result in cleaner drizzles with more accurate photometry when multiple exposures are available, as these pixels are ignored by [DrizzlePac](https://www.stsci.edu/scientific-community/software/drizzlepac.html) when combining exposures with [AstroDrizzle](https://drizzlepac.readthedocs.io/en/latest/astrodrizzle.html).
 
 Please send questions, comments, and suggestions to [Mitchell Revalski](https://www.mitchellrevalski.com). Thank you, and have a nice day!
+
+Mitchell Revalski gratefully acknowledges Marc Rafelski and Ben Sunnquist for helping to improve this code.
